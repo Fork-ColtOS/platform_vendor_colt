@@ -256,3 +256,13 @@ PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/colt/overlay
 
 # Enable ccache
 USE_CCACHE := true
+
+# Launchers
+ifeq ($(TARGET_LAUNCHER),lawnchair)
+include vendor/colt/prebuilt/app/Lawnchair/lawnchair.mk
+else
+     $(warning TARGET_LAUNCHER is invalid or undefined, building Launcher3 as default launcher)
+
+PRODUCT_PACKAGES += \
+    Launcher3QuickStep
+endif
